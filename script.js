@@ -1,67 +1,10 @@
 const projects = [
-  {
-    name: "Eclipse",
-    type: "Minecraft PvP Client",
-    description: "A lightweight PvP client concept with its own launcher and multi-version support.",
-    stack: "Java / Minecraft",
-    repo: "https://github.com/"
-  },
-  {
-    name: "Unbound",
-    type: "Minecraft Rendering",
-    description: "An experimental Vulkan-focused shader/rendering project for modern Minecraft.",
-    stack: "Java / Fabric / Vulkan",
-    repo: "https://github.com/"
-  },
-  {
-    name: "Pulse",
-    type: "Minecraft Performance Mod",
-    description: "A performance-oriented Minecraft mod focused on lightweight client-side improvements.",
-    stack: "Java / Fabric",
-    repo: "https://github.com/"
-  },
-  {
-    name: "Pawn",
-    type: "Minecraft Server Plugin",
-    description: "An Essentials-style server foundation designed around modern Minecraft versions.",
-    stack: "Java / Paper",
-    repo: "https://github.com/HydrenFOSS/Pawn-io"
-  },
-  {
-    name: "QuickNotes",
-    type: "Minecraft Utility Mod",
-    description: "An in-game notes UI built for fast access without leaving Minecraft.",
-    stack: "Java / Fabric",
-    repo: "https://github.com/"
-  },
-  {
     name: "Tasbeeh Counter",
-    type: "Minecraft Utility Mod",
-    description: "A simple in-game counter with a dedicated keybind and HUD controls.",
-    stack: "Java / Fabric",
-    repo: "https://github.com/"
+    type: "Do Tasbeeh In Minecraft",
+    description: "Do Tasbeeh In Minecraft Without Switching Apps Or using irl counter",
+    stack: "Java / Minecraft",
+    repo: "https://www.curseforge.com/minecraft/mc-mods/tasbeeh-counter"
   },
-  {
-    name: "HyperBoost",
-    type: "Minecraft Performance Mod",
-    description: "A Sodium-oriented performance companion focused on low-end hardware.",
-    stack: "Java / Fabric",
-    repo: "https://github.com/"
-  },
-  {
-    name: "Minecraft Chess",
-    type: "Minecraft Plugin",
-    description: "A server-side chess system intended to work across versions through Via.",
-    stack: "Java / Paper",
-    repo: "https://github.com/"
-  },
-  {
-    name: "Structure Seed Finder",
-    type: "Minecraft Tool",
-    description: "A project exploring structure-based seed finding and Minecraft world analysis.",
-    stack: "Java / Fabric",
-    repo: "https://github.com/"
-  }
 ];
 
 const output = document.getElementById("output");
