@@ -1,32 +1,65 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WhyShallow | projects</title>
-  <meta name="description" content="WhyShallow's projects, tools, Minecraft work, and experiments." />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WhyShallow — CLI-style software development portfolio">
+    <title>WhyShallow — terminal://home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="window" aria-label="Windows CLI portfolio">
-    <header class="titlebar">
-      <div class="app-title"><span class="app-icon">&gt;_</span> C:\\Users\\SpooderVenom\\projects</div>
-      <div class="window-controls" aria-hidden="true"><span>—</span><span>□</span><span>×</span></div>
+    <div class="scanlines"></div>
+
+```
+<main class="terminal">
+    <header class="terminal-bar">
+        <div class="traffic-lights">
+            <span class="light red"></span>
+            <span class="light yellow"></span>
+            <span class="light green"></span>
+        </div>
+
+        <div class="terminal-title">terminal — WhyShallow@localhost</div>
+
+        <div class="terminal-actions">
+            <button id="minimizeBtn" aria-label="Minimize">−</button>
+            <button id="maximizeBtn" aria-label="Maximize">□</button>
+            <button id="closeBtn" aria-label="Close">×</button>
+        </div>
     </header>
 
-    <section class="terminal" id="terminal" tabindex="0">
-      <div class="terminal-output" id="output" aria-live="polite"></div>
-      <div class="prompt-row">
-        <span class="prompt">C:\\Users\\WhyShallow&gt;</span>
-        <input id="commandInput" class="command-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command" />
-      </div>
+    <section class="terminal-body">
+        <div id="bootScreen" class="boot-screen">
+            <div id="bootText"></div>
+        </div>
+
+        <div id="terminalContent" class="terminal-content hidden">
+            <div id="output" class="output"></div>
+
+            <div class="input-row">
+                <span class="prompt">
+                    <span class="prompt-user">WhyShallow</span><span class="prompt-at">@</span><span class="prompt-host">localhost</span><span class="prompt-symbol">:~$</span>
+                </span>
+                <input id="commandInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command">
+            </div>
+        </div>
     </section>
 
-    <footer class="statusbar">
-      <span>ONLINE</span><span id="clock">00:00:00</span><span>UTF-8</span><span>STATIC</span>
+    <footer class="status-bar">
+        <span id="statusText">READY</span>
+        <span>UTF-8</span>
+        <span>CLI MODE</span>
     </footer>
-  </main>
+</main>
 
-  <script src="script.js"></script>
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+```
+
 </body>
 </html>
