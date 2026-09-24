@@ -97,8 +97,8 @@ print();
 function showContact() {
 print(`<span class="bold">CONTACT</span>`);
 print(`GitHub: <a class="blue" href="https://github.com/WhyShallow" target="_blank" rel="noreferrer">github.com/WhyShallow</a>`);
-print(`Discord: <span class="dim">add your handle in script.js</span>`);
-print(`Email: <span class="dim">add your address in script.js</span>`);
+print(`Discord: <span class="dim">whyshallow. / imwhyshallow</span>`);
+print(`Email: <span class="dim">marhamjz23@gmail.com</span>`);
 print();
 }
 
