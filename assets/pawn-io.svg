@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-labelledby="title">
+  <title id="title">Pawn-io pixel-art pawn</title>
+  <rect width="500" height="500" fill="#000"/>
+  <g fill="#d8ccc6">
+    <path d="M225 29h59v30h30v30h29v59h-29v30h-30v30h-59v-30h-30v-30h-30V89h30V59h30z"/>
+    <path d="M225 178h59v30h30v30h30v59h-30v30h-30v60h30v30h30v29h30v60h-30v25H135v-25h-30v-60h30v-29h30v-30h30v-60h-30v-30h-30v-59h30v-30h30z"/>
+  </g>
+  <g fill="#b6afab">
+    <path d="M225 29h59v30h-59zM284 59h30v30h-30zM314 89h29v59h-29zM284 148h30v30h-30z"/>
+    <path d="M284 178h30v30h30v30h30v59h-30v30h-30v30h-30v-30h30v-30h30v-59h-30v-30h-30z"/>
+    <path d="M165 238h30v59h-30zM314 238h30v59h-30zM165 357h30v30h-30zM314 357h30v30h-30z"/>
+    <path d="M135 387h30v28h-30zM343 387h30v28h-30zM105 415h30v60h-30zM373 415h30v60h-30zM135 475h238v25H135z"/>
+  </g>
+  <g fill="#f5f2ef">
+    <path d="M225 89h30v29h-30z"/>
+    <path d="M195 267h119v30H195z"/>
+    <path d="M225 357h59v30h-59zM135 415h30v30h-30zM195 415h30v30h-30zM254 387h60v29h-60z"/>
+  </g>
+  <g fill="#968f8b">
+    <path d="M284 148h30v30h-30zM254 178h60v30h-60zM195 297h89v30h-89z"/>
+    <path d="M254 357h60v30h-60zM254 415h89v30h-89z"/>
+  </g>
+</svg>

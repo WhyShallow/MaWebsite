@@ -10,7 +10,7 @@ const projects = [
     tags: ["Minecraft", "Utility"],
     url: "https://pawn-io.pages.dev/",
     linkLabel: "Visit website",
-    artMark: "P/IO",
+    image: "assets/pawn-io.svg",
     theme: "monochrome"
   },
   {
@@ -49,6 +49,12 @@ function makeProjectArtwork(project) {
     controls.append(document.createElement("span"), document.createElement("span"), document.createElement("span"));
     mockWindow.append(top, number, controls);
     artwork.append(mockWindow);
+  } else if (project.image) {
+    const image = document.createElement("img");
+    image.className = "project-art-image";
+    image.src = project.image;
+    image.alt = `${project.name} pixel-art logo`;
+    artwork.append(image);
   } else {
     artwork.setAttribute("aria-hidden", "true");
     const mark = document.createElement("span");
