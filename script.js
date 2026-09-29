@@ -4,6 +4,16 @@ const profile = {
 
 const projects = [
   {
+    name: "Pawn-io",
+    category: "Minecraft mod",
+    description: "Everyday Minecraft essentials, rethought: a sharper, more capable toolkit with a clean black-and-white theme.",
+    tags: ["Minecraft", "Utility"],
+    url: "https://pawn-io.pages.dev/",
+    linkLabel: "Visit website",
+    artMark: "P/IO",
+    theme: "monochrome"
+  },
+  {
     name: "Tasbeeh Counter",
     category: "Minecraft mod",
     description: "A simple in-game counter for doing tasbeeh without switching apps or reaching for a separate counter.",
@@ -17,7 +27,9 @@ const projectGrid = document.querySelector("#projectGrid");
 
 function makeProjectArtwork(project) {
   const artwork = document.createElement("div");
-  artwork.className = "project-art";
+  artwork.className = project.theme === "monochrome"
+    ? "project-art project-art--monochrome"
+    : "project-art";
 
   if (project.visual === "counter") {
     artwork.setAttribute("role", "img");
@@ -41,7 +53,7 @@ function makeProjectArtwork(project) {
     artwork.setAttribute("aria-hidden", "true");
     const mark = document.createElement("span");
     mark.className = "generic-art-mark";
-    mark.textContent = project.name.slice(0, 2).toUpperCase();
+    mark.textContent = project.artMark || project.name.slice(0, 2).toUpperCase();
     artwork.append(mark);
   }
 
@@ -85,7 +97,7 @@ function makeProjectCard(project, index) {
   link.href = project.url;
   link.target = "_blank";
   link.rel = "noreferrer";
-  link.textContent = "View project ↗";
+  link.textContent = `${project.linkLabel || "View project"} ↗`;
   bottom.append(tags, link);
   content.append(meta, title, description, bottom);
   card.append(content);
