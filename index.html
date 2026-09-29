@@ -1,1 +1,94 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="WhyShallow — CLI-style software development portfolio" > <meta name="theme-color" content="#08090b"> <title>WhyShallow — terminal://home</title> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" > <link rel="stylesheet" href="style.css"> </head> <body> <div class="scanlines"></div> <main class="terminal" id="terminal"> <!-- Terminal Header --> <header class="terminal-bar"> <div class="traffic-lights"> <span class="light red"></span> <span class="light yellow"></span> <span class="light green"></span> </div> <div class="terminal-title"> terminal — WhyShallow@localhost </div> <div class="terminal-actions"> <button id="minimizeBtn" aria-label="Minimize" type="button" > − </button> <button id="maximizeBtn" aria-label="Maximize" type="button" > □ </button> <button id="closeBtn" aria-label="Close" type="button" > × </button> </div> </header> <!-- Terminal Body --> <section class="terminal-body"> <div id="bootScreen" class="boot-screen"> <div id="bootText"></div> </div> <div id="terminalContent" class="terminal-content" > <div id="output" class="output" ></div> <!-- Command Input --> <div class="input-row"> <span class="prompt"> <span class="prompt-user"> WhyShallow </span> <span class="prompt-at"> @ </span> <span class="prompt-host"> localhost </span> <span class="prompt-symbol"> :~$ </span> </span> <input id="commandInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command" > </div> </div> </section> <!-- Status Bar --> <footer class="status-bar"> <span id="statusText"> READY </span> <span id="clock"></span> <span> UTF-8 </span> <span> CLI MODE </span> </footer> </main> <div id="toast" class="toast" aria-live="polite" ></div> <script src="script.js"></script> </body> </html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Projects, experiments, and videos by WhyShallow.">
+    <meta name="theme-color" content="#e9eee5">
+    <title>WhyShallow | Developer &amp; Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#home" aria-label="WhyShallow home">WS<span>.</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#youtube">YouTube</a>
+      </nav>
+      <a class="header-link" href="https://github.com/WhyShallow" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero page-width" id="home" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> Developer / creator</p>
+          <h1 id="hero-title">Hey, I’m<br><span>WhyShallow.</span></h1>
+          <p class="hero-intro">I make things for Minecraft and the web. This is where I keep the projects, experiments, and videos I’m proud of.</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#work">See what I make <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="https://github.com/WhyShallow" target="_blank" rel="noreferrer">Find me on GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="hero-art" role="img" aria-label="A colorful block-world illustration">
+          <div class="art-sun"></div>
+          <div class="art-cloud cloud-one"></div>
+          <div class="art-cloud cloud-two"></div>
+          <div class="art-hill hill-back"></div>
+          <div class="art-hill hill-front"></div>
+          <div class="art-block block-one"></div>
+          <div class="art-block block-two"></div>
+          <div class="art-block block-three"></div>
+          <span class="art-caption">MADE OF CURIOSITY</span>
+        </div>
+        <a class="scroll-cue" href="#work" aria-label="Scroll to selected work"><span></span> SCROLL TO EXPLORE</a>
+      </section>
+
+      <section class="work-section" id="work" aria-labelledby="work-title">
+        <div class="page-width">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">A little of what I do</p>
+              <h2 id="work-title">Selected work<span class="accent-dot">.</span></h2>
+            </div>
+            <p class="section-note">Mods, tools, and side quests.<br>More things are always in progress.</p>
+          </div>
+          <div class="project-grid" id="projectGrid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="about-section page-width" id="about" aria-labelledby="about-title">
+        <div class="about-stamp" aria-hidden="true"><span>BUILD</span><span>PLAY</span><span>REPEAT</span></div>
+        <div class="about-copy">
+          <p class="eyebrow">The person behind the projects</p>
+          <h2 id="about-title">Curious by nature.<br>Builder by habit.</h2>
+          <p>I’m WhyShallow, a developer interested in Minecraft, Java, client mods, server plugins, and small tools that make everyday things a little better.</p>
+          <p>I like learning by making: try an idea, see where it goes, then make the next one.</p>
+          <a class="text-link" href="https://github.com/WhyShallow" target="_blank" rel="noreferrer">A bit more on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section class="youtube-section" id="youtube" aria-labelledby="youtube-title">
+        <div class="youtube-inner page-width">
+          <div class="youtube-mark" aria-hidden="true"><span class="play-icon"></span></div>
+          <div class="youtube-copy">
+            <p class="eyebrow">Away from the code</p>
+            <h2 id="youtube-title">The YouTube side<span class="accent-dot">.</span></h2>
+            <p>Videos, projects, and whatever I’m getting into lately.</p>
+          </div>
+          <a class="button button-lime youtube-link" href="https://www.youtube.com/@WhyShallow" target="_blank" rel="noreferrer">Visit my channel <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer page-width">
+      <a class="wordmark" href="#home">WS<span>.</span></a>
+      <p>Made by WhyShallow <span aria-hidden="true">·</span> <span id="year"></span></p>
+      <a class="text-link" href="https://github.com/WhyShallow" target="_blank" rel="noreferrer">Say hello <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>

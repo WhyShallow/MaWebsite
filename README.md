@@ -1,20 +1,11 @@
-# is-a.dev Windows CLI Portfolio
+# WhyShallow Portfolio
 
-A static, Windows-terminal-inspired project portfolio.
-
-## Files
-- `index.html` — page shell
-- `style.css` — terminal/window styling
-- `script.js` — commands and project list
+A responsive personal portfolio for projects, background, and YouTube videos. It is a static site with no build step.
 
 ## Customize
-Open `script.js` and edit the `projects` array. Replace repository URLs, descriptions, stack labels, and add your own links.
 
-Useful commands in the site:
-- `help`
-- `projects`
-- `open Eclipse`
-- `about`
-- `contact`
-- `status`
-- `clear`
+- Add or edit projects in the `projects` array in `script.js`.
+- Update the YouTube channel URL in the `profile` object in `script.js`.
+- Edit the introduction and about text in `index.html`.
+
+Open `index.html` in a browser to preview the site.
