@@ -146,9 +146,12 @@ h1 span { color: #527844; }
 .suggestions-copy > p:last-child { max-width: 360px; margin: 0; color: #5d6b62; font-size: 14px; line-height: 1.7; }
 .suggestion-form { display: grid; gap: 10px; }
 .suggestion-form label { font-size: 13px; font-weight: 700; }
-.suggestion-form textarea { width: 100%; min-height: 130px; resize: vertical; padding: 13px 14px; border: 1px solid #aab7ac; border-radius: 3px; background: #f3f4ed; color: var(--ink); font: 14px/1.6 var(--body); }
-.suggestion-form textarea:focus { outline: 2px solid #527844; outline-offset: 2px; }
+.suggestion-form label span { color: #718076; font-size: 11px; font-weight: 500; }
+.suggestion-form textarea, .suggestion-form input { width: 100%; padding: 13px 14px; border: 1px solid #aab7ac; border-radius: 3px; background: #f3f4ed; color: var(--ink); font: 14px/1.6 var(--body); }
+.suggestion-form textarea { min-height: 130px; resize: vertical; }
+.suggestion-form textarea:focus, .suggestion-form input:focus { outline: 2px solid #527844; outline-offset: 2px; }
 .suggestion-form textarea::placeholder { color: #78857b; }
+.suggestion-form input::placeholder { color: #78857b; }
 .suggestion-form-bottom { min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .suggestion-status { margin: 0; color: #53635a; font-size: 12px; line-height: 1.5; }
 .suggestion-form button:disabled { cursor: wait; opacity: .65; }

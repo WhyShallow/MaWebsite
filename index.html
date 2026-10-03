@@ -99,11 +99,13 @@
             <p>Ideas, feedback, and things you’d like to see are always welcome.</p>
           </div>
           <form class="suggestion-form" id="suggestionForm">
-            <label for="suggestion">Your suggestion</label>
+            <label for="suggestion">Suggestion:</label>
             <textarea id="suggestion" name="suggestion" rows="4" maxlength="1800" required placeholder="What should I make next?"></textarea>
+            <label for="suggestionName">Name: <span>(optional)</span></label>
+            <input id="suggestionName" name="name" type="text" maxlength="80" autocomplete="name" placeholder="Your name">
             <div class="suggestion-form-bottom">
               <p id="suggestionStatus" class="suggestion-status" role="status" aria-live="polite"></p>
-              <button class="button button-dark" type="submit">Send suggestion <span aria-hidden="true">↗</span></button>
+              <button class="button button-dark" type="submit">SEND</button>
             </div>
           </form>
         </div>

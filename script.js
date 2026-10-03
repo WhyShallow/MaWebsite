@@ -120,6 +120,7 @@ document.querySelector(".youtube-link").href = profile.youtubeUrl;
 
 const suggestionForm = document.querySelector("#suggestionForm");
 const suggestionInput = document.querySelector("#suggestion");
+const suggestionName = document.querySelector("#suggestionName");
 const suggestionStatus = document.querySelector("#suggestionStatus");
 const suggestionSubmit = suggestionForm.querySelector('button[type="submit"]');
 
@@ -145,8 +146,16 @@ suggestionForm.addEventListener("submit", async (event) => {
     const response = await fetch(profile.suggestionApiUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ suggestion })
+      body: JSON.stringify({ suggestion, name: suggestionName.value.trim() })
     });
+
+    if (response.status === 429) {
+      const retryAfter = Number(response.headers.get("Retry-After"));
+      suggestionStatus.textContent = Number.isFinite(retryAfter) && retryAfter > 0
+        ? `You’ve sent a few suggestions. Please try again in ${Math.ceil(retryAfter / 60)} minute(s).`
+        : "You’ve sent a few suggestions. Please try again later.";
+      return;
+    }
 
     if (!response.ok) {
       throw new Error(`Suggestion request failed with status ${response.status}.`);
