@@ -140,6 +140,19 @@ h1 span { color: #527844; }
 .button-lime { background: var(--lime); color: #1e3027; }
 .button-lime:hover { background: #e0f58a; }
 
+.suggestions-section { padding: 76px 0 82px; }
+.suggestions-inner { display: grid; grid-template-columns: .9fr 1.1fr; align-items: start; gap: 64px; }
+.suggestions-copy h2 { margin-bottom: 14px; font: 600 38px/1.12 var(--display); }
+.suggestions-copy > p:last-child { max-width: 360px; margin: 0; color: #5d6b62; font-size: 14px; line-height: 1.7; }
+.suggestion-form { display: grid; gap: 10px; }
+.suggestion-form label { font-size: 13px; font-weight: 700; }
+.suggestion-form textarea { width: 100%; min-height: 130px; resize: vertical; padding: 13px 14px; border: 1px solid #aab7ac; border-radius: 3px; background: #f3f4ed; color: var(--ink); font: 14px/1.6 var(--body); }
+.suggestion-form textarea:focus { outline: 2px solid #527844; outline-offset: 2px; }
+.suggestion-form textarea::placeholder { color: #78857b; }
+.suggestion-form-bottom { min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.suggestion-status { margin: 0; color: #53635a; font-size: 12px; line-height: 1.5; }
+.suggestion-form button:disabled { cursor: wait; opacity: .65; }
+
 .site-footer { min-height: 95px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .site-footer .wordmark { font-size: 23px; }
 .site-footer p { margin: 0; color: #718076; font-size: 12px; }
@@ -174,6 +187,10 @@ h1 span { color: #527844; }
   .youtube-mark { width: 52px; height: 42px; }
   .youtube-copy h2 { font-size: 27px; }
   .youtube-inner .button { grid-column: 2; justify-self: start; }
+  .suggestions-section { padding: 60px 0; }
+  .suggestions-inner { grid-template-columns: 1fr; gap: 28px; }
+  .suggestions-copy h2 { font-size: 34px; }
+  .suggestion-form-bottom { align-items: flex-start; flex-direction: column; }
 }
 @media (max-width: 430px) {
   .page-width, .site-header { width: calc(100% - 32px); }

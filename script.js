@@ -1,5 +1,6 @@
 const profile = {
-  youtubeUrl: "https://www.youtube.com/@WhyShallow"
+  youtubeUrl: "https://www.youtube.com/@WhyShallow",
+  suggestionApiUrl: "https://whyshallow-suggestions.marhamjz23.workers.dev"
 };
 
 const projects = [
@@ -116,3 +117,47 @@ for (const [index, project] of projects.entries()) {
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 document.querySelector(".youtube-link").href = profile.youtubeUrl;
+
+const suggestionForm = document.querySelector("#suggestionForm");
+const suggestionInput = document.querySelector("#suggestion");
+const suggestionStatus = document.querySelector("#suggestionStatus");
+const suggestionSubmit = suggestionForm.querySelector('button[type="submit"]');
+
+suggestionForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const suggestion = suggestionInput.value.trim();
+
+  if (!suggestion) {
+    suggestionStatus.textContent = "Please enter a suggestion before sending.";
+    suggestionInput.focus();
+    return;
+  }
+
+  if (!profile.suggestionApiUrl) {
+    suggestionStatus.textContent = "The suggestion box isn’t connected yet. Please try again later.";
+    return;
+  }
+
+  suggestionSubmit.disabled = true;
+  suggestionStatus.textContent = "Sending your suggestion…";
+
+  try {
+    const response = await fetch(profile.suggestionApiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ suggestion })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Suggestion request failed with status ${response.status}.`);
+    }
+
+    suggestionForm.reset();
+    suggestionStatus.textContent = "Thanks! Your suggestion has been sent.";
+  } catch (error) {
+    console.error("Could not send suggestion.", error);
+    suggestionStatus.textContent = "Couldn’t send that just now. Please try again later.";
+  } finally {
+    suggestionSubmit.disabled = false;
+  }
+});

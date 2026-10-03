@@ -25,6 +25,7 @@
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#youtube">YouTube</a>
+        <a href="#suggestions">Suggestions</a>
       </nav>
       <a class="header-link" href="https://github.com/WhyShallow" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </header>
@@ -87,6 +88,24 @@
             <p>Videos, projects, and whatever I’m getting into lately.</p>
           </div>
           <a class="button button-lime youtube-link" href="https://www.youtube.com/@WhyShallow" target="_blank" rel="noreferrer">Visit my channel <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section class="suggestions-section" id="suggestions" aria-labelledby="suggestions-title">
+        <div class="suggestions-inner page-width">
+          <div class="suggestions-copy">
+            <p class="eyebrow">Have an idea?</p>
+            <h2 id="suggestions-title">Drop a suggestion<span class="accent-dot">.</span></h2>
+            <p>Ideas, feedback, and things you’d like to see are always welcome.</p>
+          </div>
+          <form class="suggestion-form" id="suggestionForm">
+            <label for="suggestion">Your suggestion</label>
+            <textarea id="suggestion" name="suggestion" rows="4" maxlength="1800" required placeholder="What should I make next?"></textarea>
+            <div class="suggestion-form-bottom">
+              <p id="suggestionStatus" class="suggestion-status" role="status" aria-live="polite"></p>
+              <button class="button button-dark" type="submit">Send suggestion <span aria-hidden="true">↗</span></button>
+            </div>
+          </form>
         </div>
       </section>
     </main>

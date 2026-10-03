@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "whyshallow-suggestions",
+  "main": "worker/index.mjs",
+  "compatibility_date": "2026-10-03",
+  "workers_dev": true,
+  "vars": {
+    "ALLOWED_ORIGIN": "https://whyshallow.is-a.dev"
+  }
+}
