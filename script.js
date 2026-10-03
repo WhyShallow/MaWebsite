@@ -127,10 +127,17 @@ const suggestionSubmit = suggestionForm.querySelector('button[type="submit"]');
 suggestionForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const suggestion = suggestionInput.value.trim();
+  const name = suggestionName.value.trim();
 
   if (!suggestion) {
     suggestionStatus.textContent = "Please enter a suggestion before sending.";
     suggestionInput.focus();
+    return;
+  }
+
+  if (!name) {
+    suggestionStatus.textContent = "Please enter your username before sending.";
+    suggestionName.focus();
     return;
   }
 
@@ -146,7 +153,7 @@ suggestionForm.addEventListener("submit", async (event) => {
     const response = await fetch(profile.suggestionApiUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ suggestion, name: suggestionName.value.trim() })
+      body: JSON.stringify({ suggestion, name })
     });
 
     if (response.status === 429) {

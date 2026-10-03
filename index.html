@@ -91,9 +91,11 @@
         </div>
       </section>
 
-      <section class="discord-section" aria-labelledby="discord-title">
+      <section class="discord-section" id="discord" aria-labelledby="discord-title">
         <div class="discord-inner page-width">
-          <div class="discord-mark" aria-hidden="true"><span>SC</span></div>
+          <div class="discord-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M20.317 4.37a19.8 19.8 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.25a18.3 18.3 0 0 0-5.487 0 12.6 12.6 0 0 0-.626-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.668 4.37a.07.07 0 0 0-.032.028C.533 9.047-.32 13.58.099 18.058a.082.082 0 0 0 .031.056c2.05 1.504 4.036 2.417 5.996 3.021a.078.078 0 0 0 .084-.027c.462-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.042-.106 12.94 12.94 0 0 1-1.872-.892.077.077 0 0 1 .008-.129c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.01c.12.099.246.197.373.291a.077.077 0 0 1 .008.129 12.31 12.31 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.028c1.969-.605 3.954-1.518 6.004-3.022a.077.077 0 0 0 .031-.055c.502-5.177-.838-9.672-3.549-13.661a.062.062 0 0 0-.031-.029ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419Zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419Z"/></svg>
+          </div>
           <div class="discord-copy">
             <p class="eyebrow">Come hang out</p>
             <h2 id="discord-title">Shallow’s Cat Cafe<span class="accent-dot">.</span></h2>
@@ -113,8 +115,8 @@
           <form class="suggestion-form" id="suggestionForm">
             <label for="suggestion">Suggestion:</label>
             <textarea id="suggestion" name="suggestion" rows="4" maxlength="1800" required placeholder="What should I make next?"></textarea>
-            <label for="suggestionName">Name: <span>(optional)</span></label>
-            <input id="suggestionName" name="name" type="text" maxlength="80" autocomplete="name" placeholder="Your name">
+            <label for="suggestionName">Username:</label>
+            <input id="suggestionName" name="name" type="text" maxlength="80" autocomplete="nickname" required placeholder="Your username">
             <div class="suggestion-form-bottom">
               <p id="suggestionStatus" class="suggestion-status" role="status" aria-live="polite"></p>
               <button class="button button-dark" type="submit">SEND</button>
