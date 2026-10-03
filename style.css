@@ -140,6 +140,13 @@ h1 span { color: #527844; }
 .button-lime { background: var(--lime); color: #1e3027; }
 .button-lime:hover { background: #e0f58a; }
 
+.discord-section { padding: 48px 0; background: var(--lime); color: #1e3027; }
+.discord-inner { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 24px; }
+.discord-mark { width: 66px; height: 58px; display: grid; place-items: center; background: #1d3128; color: var(--lime); font: 700 18px/1 var(--display); }
+.discord-section .eyebrow { margin-bottom: 7px; color: #53634b; }
+.discord-copy h2 { margin-bottom: 0; font: 600 32px/1.12 var(--display); }
+.discord-copy > p:last-child { margin: 8px 0 0; color: #53634b; font-size: 13px; }
+
 .suggestions-section { padding: 76px 0 82px; }
 .suggestions-inner { display: grid; grid-template-columns: .9fr 1.1fr; align-items: start; gap: 64px; }
 .suggestions-copy h2 { margin-bottom: 14px; font: 600 38px/1.12 var(--display); }
@@ -190,6 +197,10 @@ h1 span { color: #527844; }
   .youtube-mark { width: 52px; height: 42px; }
   .youtube-copy h2 { font-size: 27px; }
   .youtube-inner .button { grid-column: 2; justify-self: start; }
+  .discord-inner { grid-template-columns: 54px 1fr; gap: 17px; }
+  .discord-mark { width: 52px; height: 48px; }
+  .discord-copy h2 { font-size: 27px; }
+  .discord-inner .button { grid-column: 2; justify-self: start; }
   .suggestions-section { padding: 60px 0; }
   .suggestions-inner { grid-template-columns: 1fr; gap: 28px; }
   .suggestions-copy h2 { font-size: 34px; }
