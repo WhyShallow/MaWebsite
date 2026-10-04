@@ -21,7 +21,10 @@
   <body>
     <header class="site-header">
       <a class="wordmark" href="#home" aria-label="WhyShallow home">WS<span>.</span></a>
-      <nav class="main-nav" aria-label="Main navigation">
+      <button class="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#youtube">YouTube</a>
@@ -99,9 +102,15 @@
           <div class="discord-copy">
             <p class="eyebrow">Come hang out</p>
             <h2 id="discord-title">Shallow’s Cat Cafe<span class="accent-dot">.</span></h2>
-            <p>Join my Discord community for chats, updates, and a little cafe time.</p>
+            <p>Join a community I moderate or contribute to.</p>
           </div>
-          <a class="button button-dark" href="https://discord.gg/a9zUSxYjkw" target="_blank" rel="noreferrer">Join the Discord <span aria-hidden="true">↗</span></a>
+          <details class="discord-menu">
+            <summary class="button button-dark">Discord servers <span class="discord-menu-caret" aria-hidden="true">⌄</span></summary>
+            <div class="discord-menu-list" aria-label="Discord servers">
+              <a href="https://discord.gg/a9zUSxYjkw" target="_blank" rel="noreferrer">Shallow’s Cat Cafe <span aria-hidden="true">↗</span></a>
+              <a href="https://discord.gg/XeGCKkRc83" target="_blank" rel="noreferrer">Pawn-io <span aria-hidden="true">↗</span></a>
+            </div>
+          </details>
         </div>
       </section>
 
