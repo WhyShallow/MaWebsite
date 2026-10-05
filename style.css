@@ -72,9 +72,10 @@ body.secret-mode > .site-footer { display: none; }
 :root[data-theme="dark"] .secret-upload-form input[type="file"]::file-selector-button { border-color: #4a5d4c; }
 
 .site-header {
-  width: min(1280px, calc(100% - 64px));
+  width: 100%;
+  padding-inline: max(32px, calc((100% - 1280px) / 2));
   height: 86px;
-  margin: auto;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -310,7 +311,8 @@ h1 span { color: #527844; }
   .scroll-blur .hero-copy, .scroll-blur .hero-art { filter: none; }
 }
 @media (max-width: 760px) {
-  .page-width, .site-header { width: calc(100% - 40px); }
+  .page-width { width: calc(100% - 40px); }
+  .site-header { width: 100%; padding-inline: 20px; }
   .secret-page { padding: 24px 20px 52px; }
   .secret-heading { padding-top: 48px; }
   .secret-heading h1 { font-size: 38px; }
@@ -357,7 +359,8 @@ h1 span { color: #527844; }
   .suggestion-form-bottom { align-items: flex-start; flex-direction: column; }
 }
 @media (max-width: 430px) {
-  .page-width, .site-header { width: calc(100% - 32px); }
+  .page-width { width: calc(100% - 32px); }
+  .site-header { width: 100%; padding-inline: 16px; }
   .wordmark { font-size: 22px; }
   .main-nav a { font-size: 12px; }
   .header-link { padding: 8px; font-size: 11px; }
