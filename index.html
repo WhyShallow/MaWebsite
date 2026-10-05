@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="wallpapers/catalog.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -28,6 +29,7 @@
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#youtube">YouTube</a>
+        <a href="wallpapers/">Wallpapers</a>
         <a href="#suggestions">Suggestions</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
@@ -143,6 +145,20 @@
               <button class="button button-dark" type="submit">SEND</button>
             </div>
           </form>
+        </div>
+      </section>
+
+      <section class="latest-wallpaper-section" aria-labelledby="latest-wallpaper-title">
+        <div class="latest-wallpaper-inner page-width">
+          <div class="latest-wallpaper-copy">
+            <p class="eyebrow">Fresh from the collection</p>
+            <h2 id="latest-wallpaper-title">Latest wallpaper<span class="accent-dot">.</span></h2>
+            <p>A new background for your screen, ready to download.</p>
+            <a class="button button-dark" href="wallpapers/">See More <span aria-hidden="true">↗</span></a>
+          </div>
+          <a class="latest-wallpaper-preview" id="latestWallpaper" href="wallpapers/" aria-label="Browse the wallpaper collection">
+            <span class="latest-wallpaper-empty">No wallpapers just yet. Check back soon.</span>
+          </a>
         </div>
       </section>
     </main>

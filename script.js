@@ -125,6 +125,24 @@ for (const [index, project] of projects.entries()) {
   projectGrid.append(makeProjectCard(project, index));
 }
 
+const latestWallpaper = document.querySelector("#latestWallpaper");
+const newestWallpaper = window.wallpaperCatalog.at(-1);
+if (newestWallpaper) {
+  const image = document.createElement("img");
+  image.src = newestWallpaper.file;
+  image.alt = newestWallpaper.alt || newestWallpaper.name;
+  image.loading = "lazy";
+  image.decoding = "async";
+
+  const caption = document.createElement("span");
+  caption.className = "latest-wallpaper-caption";
+  caption.textContent = `${newestWallpaper.name} · ${newestWallpaper.resolution}`;
+
+  latestWallpaper.classList.add("has-image");
+  latestWallpaper.setAttribute("aria-label", `View wallpaper: ${newestWallpaper.name}`);
+  latestWallpaper.replaceChildren(image, caption);
+}
+
 document.querySelector("#year").textContent = new Date().getFullYear();
 document.querySelector(".youtube-link").href = profile.youtubeUrl;
 
@@ -143,6 +161,9 @@ function setTheme(theme) {
   themeToggle.setAttribute("aria-pressed", String(isDark));
   themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
   themeToggle.title = `Switch to ${isDark ? "light" : "dark"} mode`;
+  themeToggle.querySelector("path").setAttribute("d", isDark
+    ? "M12 3v2m0 14v2m9-9h-2M5 12H3m15.36-6.36-1.42 1.42M7.06 16.94l-1.42 1.42m12.72 0-1.42-1.42M7.06 7.06 5.64 5.64M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"
+    : "M20.2 15.1A8.4 8.4 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z");
   try {
     localStorage.setItem("theme", isDark ? "dark" : "light");
   } catch {
