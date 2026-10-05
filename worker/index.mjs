@@ -6,6 +6,7 @@ const RATE_LIMIT = 3;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const MAX_SUGGESTION_LENGTH = 1800;
 const MAX_NAME_LENGTH = 80;
+const MAX_PRIVATE_VIDEO_SIZE = 90 * 1024 * 1024;
 
 function jsonResponse(status, message, corsHeaders = {}) {
   return new Response(JSON.stringify({ message }), {
@@ -34,6 +35,106 @@ function getPingUserIds(value) {
   return ids.length > 0 && ids.every((id) => /^\d{17,20}$/.test(id)) ? ids : null;
 }
 
+function privateVideoResponse(status, message, corsHeaders) {
+  return jsonResponse(status, message, corsHeaders);
+}
+
+async function handlePrivateVideos(request, env, corsHeaders, url) {
+  if (!env.VIDEO_BUCKET || !env.VIDEO_ADMIN_TOKEN) {
+    return privateVideoResponse(503, "Private video storage is not configured yet.", corsHeaders);
+  }
+
+  if (request.headers.get("Authorization") !== `Bearer ${env.VIDEO_ADMIN_TOKEN}`) {
+    return privateVideoResponse(401, "Admin token was not accepted.", corsHeaders);
+  }
+
+  const videoMatch = url.pathname.match(/^\/videos\/([0-9a-f-]{36})$/i);
+
+  try {
+    if (url.pathname === "/videos" && request.method === "GET") {
+      const objects = [];
+      let cursor;
+      do {
+        const page = await env.VIDEO_BUCKET.list({
+          prefix: "videos/",
+          include: ["customMetadata", "httpMetadata"],
+          limit: 1000,
+          cursor
+        });
+        objects.push(...page.objects);
+        cursor = page.truncated ? page.cursor : undefined;
+      } while (cursor);
+
+      const videos = objects.map((object) => ({
+        id: object.key.slice("videos/".length),
+        name: object.customMetadata?.fileName || "Untitled video",
+        size: object.size,
+        uploadedAt: object.customMetadata?.uploadedAt || object.uploaded?.toISOString?.() || null,
+        type: object.httpMetadata?.contentType || "application/octet-stream"
+      }));
+      return new Response(JSON.stringify({ videos }), { headers: { ...jsonHeaders, ...corsHeaders } });
+    }
+
+    if (url.pathname === "/videos" && request.method === "POST") {
+      if (!request.headers.get("Content-Type")?.toLowerCase().startsWith("multipart/form-data")) {
+        return privateVideoResponse(415, "Upload must use multipart form data.", corsHeaders);
+      }
+      const contentLength = Number(request.headers.get("Content-Length"));
+      if (Number.isFinite(contentLength) && contentLength > MAX_PRIVATE_VIDEO_SIZE + 1024 * 1024) {
+        return privateVideoResponse(413, "Video uploads are limited to 90 MiB.", corsHeaders);
+      }
+
+      let form;
+      try {
+        form = await request.formData();
+      } catch {
+        return privateVideoResponse(400, "Could not read the uploaded video.", corsHeaders);
+      }
+      const file = form.get("video");
+      if (!file || typeof file === "string" || typeof file.stream !== "function" || !file.size) {
+        return privateVideoResponse(400, "Choose a video file to upload.", corsHeaders);
+      }
+      if (file.size > MAX_PRIVATE_VIDEO_SIZE) {
+        return privateVideoResponse(413, "Video uploads are limited to 90 MiB.", corsHeaders);
+      }
+      if (!file.type.toLowerCase().startsWith("video/")) {
+        return privateVideoResponse(415, "The selected file must be a video.", corsHeaders);
+      }
+
+      const id = crypto.randomUUID();
+      const uploadedAt = new Date().toISOString();
+      await env.VIDEO_BUCKET.put(`videos/${id}`, file.stream(), {
+        httpMetadata: { contentType: file.type },
+        customMetadata: { fileName: file.name.slice(0, 255), uploadedAt }
+      });
+      return new Response(JSON.stringify({ id, name: file.name, size: file.size, uploadedAt }), {
+        status: 201,
+        headers: { ...jsonHeaders, ...corsHeaders }
+      });
+    }
+
+    if (videoMatch && request.method === "GET") {
+      const object = await env.VIDEO_BUCKET.get(`videos/${videoMatch[1]}`);
+      if (!object) return privateVideoResponse(404, "Video not found.", corsHeaders);
+      const headers = new Headers(corsHeaders);
+      headers.set("Content-Type", object.httpMetadata?.contentType || "application/octet-stream");
+      headers.set("Content-Length", String(object.size));
+      headers.set("Cache-Control", "private, no-store");
+      return new Response(object.body, { headers });
+    }
+
+    if (videoMatch && request.method === "DELETE") {
+      await env.VIDEO_BUCKET.delete(`videos/${videoMatch[1]}`);
+      return new Response(null, { status: 204, headers: corsHeaders });
+    }
+
+    return privateVideoResponse(404, "Private video not found.", corsHeaders);
+  } catch (error) {
+    console.error("Private video storage request failed.", error);
+    return privateVideoResponse(500, "Private video storage request failed.", corsHeaders);
+  }
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get("Origin");
@@ -43,14 +144,23 @@ export default {
 
     const corsHeaders = {
       "Access-Control-Allow-Origin": env.ALLOWED_ORIGIN,
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Authorization, Content-Type",
       "Access-Control-Max-Age": "86400",
       "Vary": "Origin"
     };
 
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: corsHeaders });
+    }
+
+    const url = new URL(request.url);
+    if (url.pathname === "/videos" || url.pathname.startsWith("/videos/")) {
+      return handlePrivateVideos(request, env, corsHeaders, url);
+    }
+
+    if (url.pathname !== "/") {
+      return jsonResponse(404, "Not found.", corsHeaders);
     }
 
     if (request.method !== "POST") {

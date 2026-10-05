@@ -4,6 +4,12 @@
   "main": "worker/index.mjs",
   "compatibility_date": "2026-10-03",
   "workers_dev": true,
+  "r2_buckets": [
+    {
+      "binding": "VIDEO_BUCKET",
+      "bucket_name": "whyshallow-private-videos"
+    }
+  ],
   "durable_objects": {
     "bindings": [
       {
