@@ -32,45 +32,6 @@ body {
 .scroll-blur .hero-copy, .scroll-blur .hero-art { filter: blur(1.5px); }
 a { color: inherit; }
 .page-width { width: min(1160px, calc(100% - 64px)); margin-inline: auto; }
-body.secret-mode { min-height: 100vh; }
-body.secret-mode > .site-header,
-body.secret-mode > main,
-body.secret-mode > .site-footer { display: none; }
-.secret-page { min-height: 100vh; padding: 34px 24px 72px; background: var(--paper); color: var(--ink); }
-.secret-page[hidden], .secret-manager[hidden] { display: none !important; }
-.secret-shell { width: min(760px, 100%); margin-inline: auto; }
-.secret-header, .secret-manager-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-.secret-header { padding-bottom: 20px; border-bottom: 1px solid var(--line); }
-.secret-heading { padding: 64px 0 32px; }
-.secret-heading .eyebrow { margin-bottom: 12px; }
-.secret-heading h1 { margin-bottom: 12px; font-size: 46px; line-height: 1.08; }
-.secret-heading > p:last-child { margin: 0; color: var(--muted); }
-.secret-form, .secret-upload-form { display: grid; justify-items: start; gap: 12px; }
-.secret-form label, .secret-upload-form label { font-size: 13px; font-weight: 700; }
-.secret-form input, .secret-upload-form input { width: 100%; min-height: 48px; padding: 10px 12px; border: 1px solid #aab7ac; border-radius: 3px; background: #f3f4ed; color: var(--ink); font: 14px/1.5 var(--body); }
-.secret-form input:focus-visible, .secret-upload-form input:focus-visible { outline: 2px solid #527844; outline-offset: 2px; }
-.secret-status { min-height: 1.5em; margin: 0; color: var(--muted); font-size: 13px; }
-.secret-status[data-state="error"] { color: #a83e2b; }
-.secret-status[data-state="success"] { color: #285d38; }
-.secret-manager { margin-top: 52px; }
-.secret-manager-heading { margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-.secret-manager-heading h2 { margin: 0; font: 600 26px/1.2 var(--display); }
-.secret-signout { padding: 0; border: 0; background: transparent; color: inherit; font: 600 14px var(--body); cursor: pointer; }
-.secret-upload-form { padding-bottom: 22px; }
-.secret-upload-form input[type="file"] { padding: 7px; }
-.secret-upload-form input[type="file"]::file-selector-button { min-height: 32px; margin-right: 12px; padding: 0 10px; border: 1px solid #aab7ac; border-radius: 2px; background: transparent; color: inherit; cursor: pointer; }
-.secret-video-list { border-top: 1px solid var(--line); }
-.secret-video-item { padding: 20px 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px 18px; border-bottom: 1px solid var(--line); }
-.secret-video-item h3 { margin: 0; overflow-wrap: anywhere; font: 600 17px/1.35 var(--display); }
-.secret-video-item p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
-.secret-video-actions { display: flex; gap: 14px; align-items: center; }
-.secret-video-actions button { padding: 7px 0; border: 0; background: none; color: inherit; font: 600 12px var(--body); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
-.secret-video-actions button:disabled { cursor: wait; opacity: .6; }
-.secret-player { grid-column: 1 / -1; width: 100%; max-height: 70vh; aspect-ratio: 16 / 9; background: #000; }
-:root[data-theme="dark"] .secret-form input,
-:root[data-theme="dark"] .secret-upload-form input { border-color: #4a5d4c; background: #202d24; }
-:root[data-theme="dark"] .secret-upload-form input[type="file"]::file-selector-button { border-color: #4a5d4c; }
-
 .site-header {
   width: 100%;
   padding-inline: max(32px, calc((100% - 1280px) / 2));
@@ -313,11 +274,6 @@ h1 span { color: #527844; }
 @media (max-width: 760px) {
   .page-width { width: calc(100% - 40px); }
   .site-header { width: 100%; padding-inline: 20px; }
-  .secret-page { padding: 24px 20px 52px; }
-  .secret-heading { padding-top: 48px; }
-  .secret-heading h1 { font-size: 38px; }
-  .secret-video-item { grid-template-columns: 1fr; gap: 10px; }
-  .secret-video-actions { justify-self: start; }
   .site-header { height: 72px; position: sticky; }
   .main-nav a, .header-link { font-size: 12px; }
   .header-link { padding: 9px 10px; }
