@@ -9,7 +9,7 @@ const projects = [
     category: "Minecraft mod",
     description: "Everyday Minecraft essentials, rethought: a sharper, more capable toolkit with a clean black-and-white theme.",
     tags: ["Minecraft", "Utility"],
-    url: "https://pawn-io.pages.dev/",
+    url: "https://pawn-io.me/",
     linkLabel: "Visit website",
     image: "assets/pawn-io.svg",
     theme: "monochrome"
