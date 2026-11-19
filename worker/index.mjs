@@ -6,6 +6,8 @@ const RATE_LIMIT = 3;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const MAX_SUGGESTION_LENGTH = 1800;
 const MAX_NAME_LENGTH = 80;
+const MAX_BOOK_TITLE_LENGTH = 120;
+const MAX_ADDRESS_LENGTH = 1000;
 
 function jsonResponse(status, message, corsHeaders = {}) {
   return new Response(JSON.stringify({ message }), {
@@ -74,16 +76,48 @@ export default {
       return jsonResponse(400, "Request body must be valid JSON.", corsHeaders);
     }
 
-    const suggestion = typeof payload?.suggestion === "string" ? payload.suggestion.trim() : "";
-    if (payload?.name !== undefined && typeof payload.name !== "string") {
-      return jsonResponse(400, "Name must be text.", corsHeaders);
+    const type = payload?.type ?? "suggestion";
+    if (type !== "suggestion" && type !== "book-order") {
+      return jsonResponse(400, "Request type is not supported.", corsHeaders);
     }
-    const name = typeof payload?.name === "string" ? payload.name.trim() : "";
-    if (!suggestion || suggestion.length > MAX_SUGGESTION_LENGTH) {
-      return jsonResponse(400, `Suggestion must be between 1 and ${MAX_SUGGESTION_LENGTH} characters.`, corsHeaders);
-    }
-    if (name.length > MAX_NAME_LENGTH) {
-      return jsonResponse(400, `Name must be no longer than ${MAX_NAME_LENGTH} characters.`, corsHeaders);
+
+    let embed;
+    if (type === "book-order") {
+      const bookTitle = typeof payload.bookTitle === "string" ? payload.bookTitle.trim() : "";
+      const address = typeof payload.address === "string" ? payload.address.trim() : "";
+      if (!bookTitle || bookTitle.length > MAX_BOOK_TITLE_LENGTH) {
+        return jsonResponse(400, `Book title must be between 1 and ${MAX_BOOK_TITLE_LENGTH} characters.`, corsHeaders);
+      }
+      if (!address || address.length > MAX_ADDRESS_LENGTH) {
+        return jsonResponse(400, `Address must be between 1 and ${MAX_ADDRESS_LENGTH} characters.`, corsHeaders);
+      }
+      embed = {
+        title: `New Address For book ${bookTitle}`,
+        color: 0x18342a,
+        fields: [{ name: "Address", value: address, inline: false }],
+        timestamp: new Date().toISOString()
+      };
+    } else {
+      const suggestion = typeof payload?.suggestion === "string" ? payload.suggestion.trim() : "";
+      if (payload?.name !== undefined && typeof payload.name !== "string") {
+        return jsonResponse(400, "Name must be text.", corsHeaders);
+      }
+      const name = typeof payload?.name === "string" ? payload.name.trim() : "";
+      if (!suggestion || suggestion.length > MAX_SUGGESTION_LENGTH) {
+        return jsonResponse(400, `Suggestion must be between 1 and ${MAX_SUGGESTION_LENGTH} characters.`, corsHeaders);
+      }
+      if (name.length > MAX_NAME_LENGTH) {
+        return jsonResponse(400, `Name must be no longer than ${MAX_NAME_LENGTH} characters.`, corsHeaders);
+      }
+      embed = {
+        title: "New website suggestion",
+        color: 0x18342a,
+        fields: [
+          { name: "Suggestion", value: suggestion, inline: false },
+          { name: "Name", value: name || "Anonymous", inline: false }
+        ],
+        timestamp: new Date().toISOString()
+      };
     }
 
     let ipHash;
@@ -135,15 +169,7 @@ export default {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           content: pingUserIds.map((id) => `<@${id}>`).join(" "),
-          embeds: [{
-            title: "New website suggestion",
-            color: 0x18342a,
-            fields: [
-              { name: "Suggestion", value: suggestion, inline: false },
-              { name: "Name", value: name || "Anonymous", inline: false }
-            ],
-            timestamp: new Date().toISOString()
-          }],
+          embeds: [embed],
           allowed_mentions: { parse: [], users: pingUserIds }
         })
       });

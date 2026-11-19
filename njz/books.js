@@ -14,10 +14,33 @@ const books = [
     color: "#d5ef67"
   }
 ];
+const orderApiUrl = "https://whyshallow-suggestions.marhamjz23.workers.dev";
 
 const bookGrid = document.querySelector("#bookGrid");
 const bookEmpty = document.querySelector("#bookEmpty");
 const bookCount = document.querySelector("#bookCount");
+const orderDialog = document.querySelector("#orderDialog");
+const orderForm = document.querySelector("#orderForm");
+const orderAddress = document.querySelector("#orderAddress");
+const orderDialogBook = document.querySelector("#orderDialogBook");
+const orderStatus = document.querySelector("#orderStatus");
+const orderSubmit = orderForm.querySelector('button[type="submit"]');
+let selectedBook = null;
+let isSubmittingOrder = false;
+
+function setOrderStatus(message, state = "") {
+  orderStatus.textContent = message;
+  orderStatus.dataset.state = state;
+}
+
+function openOrderDialog(book) {
+  selectedBook = book;
+  orderDialogBook.textContent = book.title;
+  orderForm.reset();
+  setOrderStatus("");
+  orderDialog.showModal();
+  orderAddress.focus();
+}
 
 function makeBookCard(book, index) {
   const card = document.createElement("article");
@@ -58,18 +81,13 @@ function makeBookCard(book, index) {
   price.className = "book-price";
   price.textContent = `${book.price} Rs.`;
 
-  let order;
-  if (book.orderUrl) {
-    order = document.createElement("a");
-    order.href = book.orderUrl;
-  } else {
-    order = document.createElement("button");
-    order.type = "button";
-    order.disabled = false;
-    order.title = "Add an order link in njz/books.js to enable this button";
-  }
+  const order = document.createElement("button");
+  order.type = "button";
+  order.disabled = !book.orderUrl;
+  order.title = book.orderUrl ? "" : "Add an order link in njz/books.js to enable this button";
   order.className = "button button-dark book-order";
   order.textContent = "Order";
+  order.addEventListener("click", () => openOrderDialog(book));
 
   content.append(meta, title, price, order);
   card.append(cover, content);
@@ -83,6 +101,61 @@ for (const [index, book] of books.entries()) {
 bookCount.textContent = `${books.length} ${books.length === 1 ? "book" : "books"}`;
 bookEmpty.hidden = books.length > 0;
 document.querySelector("#year").textContent = new Date().getFullYear();
+
+orderForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const address = orderAddress.value.trim();
+
+  if (!selectedBook || !address) {
+    setOrderStatus("Please enter your delivery address.", "error");
+    orderAddress.focus();
+    return;
+  }
+
+  isSubmittingOrder = true;
+  for (const control of orderForm.elements) control.disabled = true;
+  orderSubmit.classList.add("is-loading");
+  orderSubmit.setAttribute("aria-busy", "true");
+  setOrderStatus("Sending your address…", "pending");
+
+  try {
+    const response = await fetch(orderApiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type: "book-order",
+        bookTitle: selectedBook.title,
+        address
+      })
+    });
+
+    if (response.status === 429) {
+      setOrderStatus("Too many requests. Please try again later.", "error");
+      return;
+    }
+
+    if (!response.ok) {
+      throw new Error(`Book order request failed with status ${response.status}.`);
+    }
+
+    const destination = selectedBook.orderUrl;
+    orderDialog.close();
+    window.location.assign(destination);
+  } catch (error) {
+    console.error("Could not send book order address.", error);
+    setOrderStatus("Couldn’t send your address just now. Please try again later.", "error");
+  } finally {
+    isSubmittingOrder = false;
+    for (const control of orderForm.elements) control.disabled = false;
+    orderSubmit.classList.remove("is-loading");
+    orderSubmit.removeAttribute("aria-busy");
+  }
+});
+
+orderDialog.addEventListener("cancel", (event) => {
+  if (isSubmittingOrder) event.preventDefault();
+});
+orderForm.querySelector("[data-order-cancel]").addEventListener("click", () => orderDialog.close());
 
 const themeToggle = document.querySelector(".theme-toggle");
 const savedTheme = (() => {

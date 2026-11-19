@@ -300,6 +300,28 @@ h1 span { color: #527844; }
 .book-price { margin: 10px 0 15px; color: #53635a; font-size: 14px; font-weight: 700; }
 .book-order { min-height: 42px; padding-inline: 14px; font-size: 11px; cursor: pointer; }
 .book-order:disabled { cursor: not-allowed; opacity: .58; }
+.book-order-dialog { width: min(520px, calc(100% - 32px)); max-height: calc(100% - 32px); padding: 0; border: 1px solid var(--line); background: var(--paper); color: var(--ink); box-shadow: 0 24px 70px rgba(10, 28, 19, .28); }
+.book-order-dialog::backdrop { background: rgba(13, 27, 19, .68); backdrop-filter: blur(4px); }
+.book-order-form { display: grid; gap: 12px; padding: 26px; }
+.order-dialog-heading { display: flex; justify-content: space-between; align-items: start; gap: 18px; }
+.order-dialog-heading .eyebrow { margin: 0 0 8px; color: #647367; font-size: 11px; font-weight: 700; }
+.order-dialog-heading h2 { margin: 0; font: 600 25px/1.2 var(--display); }
+.order-dialog-close { width: 36px; height: 36px; flex: 0 0 auto; border: 1px solid var(--line); background: transparent; color: var(--ink); font-size: 23px; cursor: pointer; }
+.order-dialog-book { margin: 0; color: #53635a; font-size: 14px; font-weight: 700; }
+.book-order-form label { font-size: 13px; font-weight: 700; }
+.book-order-form textarea { width: 100%; padding: 13px 14px; border: 1px solid #aab7ac; border-radius: 3px; background: #f3f4ed; color: var(--ink); font: 14px/1.6 var(--body); resize: vertical; }
+.book-order-form textarea:focus { outline: none; border-color: #527844; box-shadow: 0 0 0 3px rgba(82, 120, 68, .2); }
+.book-order-form textarea:focus-visible { outline: 2px solid #527844; outline-offset: 2px; }
+.book-order-form textarea::placeholder { color: #78857b; }
+.order-disclosure { margin: 0; color: #647367; font-size: 12px; line-height: 1.6; }
+.order-form-bottom { min-height: 44px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.order-form-actions { display: flex; flex: 0 0 auto; gap: 8px; }
+.order-cancel { background: transparent; color: var(--ink); }
+.order-status { min-height: 1.5em; margin: 0; color: #53635a; font-size: 12px; line-height: 1.5; }
+.order-status[data-state="error"] { color: #a83e2b; }
+.order-status[data-state="pending"] { color: #53635a; }
+.book-order-form button:disabled { cursor: wait; opacity: .8; }
+.book-order-form button.is-loading::after { width: 13px; height: 13px; border: 2px solid rgba(255, 255, 255, .45); border-top-color: white; border-radius: 50%; content: ""; animation: spin 700ms linear infinite; }
 .book-empty { min-height: 150px; padding: 24px; display: grid; place-items: center; border: 1px solid rgba(244, 243, 233, .28); color: #b5c0b9; font: 500 16px/1.5 var(--display); text-align: center; }
 .book-empty[hidden] { display: none; }
 .books-footer { border-top: 1px solid var(--line); }
@@ -307,6 +329,14 @@ h1 span { color: #527844; }
 :root[data-theme="dark"] .book-card { background: #202d24; color: var(--ink); }
 :root[data-theme="dark"] .book-card-meta,
 :root[data-theme="dark"] .book-price { color: var(--muted); }
+:root[data-theme="dark"] .book-order-dialog { background: #202d24; }
+:root[data-theme="dark"] .order-dialog-heading .eyebrow,
+:root[data-theme="dark"] .order-dialog-book,
+:root[data-theme="dark"] .order-disclosure,
+:root[data-theme="dark"] .order-status { color: var(--muted); }
+:root[data-theme="dark"] .book-order-form textarea { background: #17231b; border-color: #4a5d4c; color: var(--ink); }
+:root[data-theme="dark"] .book-order-form textarea::placeholder { color: #a9b6aa; }
+:root[data-theme="dark"] .order-cancel { border-color: #4a5d4c; color: var(--ink); }
 .book-hero,
 .books-section { animation: arrive 560ms cubic-bezier(.2, .7, .2, 1) both; }
 .books-section { animation-delay: 120ms; }
@@ -353,6 +383,9 @@ h1 span { color: #527844; }
   .book-hero h1 { font-size: 48px; }
   .book-art { min-height: 190px; }
   .book-stack { transform: translateX(-50%) scale(.86) rotate(-2deg); transform-origin: bottom center; }
+  .book-order-form { padding: 21px; }
+  .order-dialog-heading h2 { font-size: 22px; }
+  .order-form-bottom { align-items: flex-start; flex-direction: column; }
 }
 
 :root[data-theme="dark"] .main-nav a { color: var(--muted); }
