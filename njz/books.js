@@ -3,14 +3,14 @@ const books = [
     title: "Guftar",
     cover: "/assets/books/guftar.png",
     price: 600,
-    orderUrl: "",
+    orderUrl: "https://youtube.com/@WhyShallow",
     color: "#f27c5d"
   },
   {
     title: "Al Ishq",
     cover: "/assets/books/al-ishq.png",
     price: 1100,
-    orderUrl: "",
+    orderUrl: "https://youtube.com/@WhyShallow",
     color: "#d5ef67"
   }
 ];
@@ -65,7 +65,7 @@ function makeBookCard(book, index) {
   } else {
     order = document.createElement("button");
     order.type = "button";
-    order.disabled = true;
+    order.disabled = false;
     order.title = "Add an order link in njz/books.js to enable this button";
   }
   order.className = "button button-dark book-order";
