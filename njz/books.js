@@ -155,7 +155,9 @@ orderForm.addEventListener("submit", async (event) => {
 orderDialog.addEventListener("cancel", (event) => {
   if (isSubmittingOrder) event.preventDefault();
 });
-orderForm.querySelector("[data-order-cancel]").addEventListener("click", () => orderDialog.close());
+orderForm.querySelectorAll("[data-order-cancel]").forEach((button) => {
+  button.addEventListener("click", () => orderDialog.close());
+});
 
 const themeToggle = document.querySelector(".theme-toggle");
 const savedTheme = (() => {
