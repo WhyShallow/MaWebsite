@@ -84,9 +84,18 @@
           <button class="order-dialog-close" type="button" data-order-cancel aria-label="Close address form">×</button>
         </div>
         <p class="order-dialog-book" id="orderDialogBook"></p>
-        <label for="orderAddress">Delivery address</label>
-        <textarea id="orderAddress" name="address" rows="4" maxlength="1000" autocomplete="street-address" required placeholder="Enter your full delivery address"></textarea>
-        <p class="order-disclosure">Your address and book title will be sent to the seller. After sending, you’ll continue to the order website.</p>
+        <div class="order-form-fields">
+          <label for="orderAddress">Delivery address</label>
+          <textarea id="orderAddress" name="address" rows="4" maxlength="1000" autocomplete="street-address" required placeholder="Enter your full delivery address"></textarea>
+          <p class="order-disclosure">Your address and book title will be sent to the seller. You’ll receive Easypaisa payment details after submitting your order request.</p>
+        </div>
+        <section class="order-payment" id="orderPayment" aria-labelledby="orderPaymentTitle" hidden>
+          <h3 id="orderPaymentTitle">Pay via Easypaisa</h3>
+          <p>Amount: <strong id="orderPaymentAmount"></strong></p>
+          <p>Send payment to: <strong>0336-6937766</strong></p>
+          <p>Your order will be confirmed after payment.</p>
+          <button class="button button-dark" type="button" data-order-cancel>Done</button>
+        </section>
         <div class="order-form-bottom">
           <p class="order-status" id="orderStatus" role="status" aria-live="polite"></p>
           <div class="order-form-actions">

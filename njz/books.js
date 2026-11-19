@@ -3,14 +3,12 @@ const books = [
     title: "Guftar",
     cover: "/assets/books/guftar.png",
     price: 600,
-    orderUrl: "https://youtube.com/@WhyShallow",
     color: "#f27c5d"
   },
   {
     title: "Al Ishq",
     cover: "/assets/books/al-ishq.png",
     price: 1100,
-    orderUrl: "https://youtube.com/@WhyShallow",
     color: "#d5ef67"
   }
 ];
@@ -23,6 +21,11 @@ const orderDialog = document.querySelector("#orderDialog");
 const orderForm = document.querySelector("#orderForm");
 const orderAddress = document.querySelector("#orderAddress");
 const orderDialogBook = document.querySelector("#orderDialogBook");
+const orderDialogTitle = document.querySelector("#orderDialogTitle");
+const orderPayment = document.querySelector("#orderPayment");
+const orderPaymentAmount = document.querySelector("#orderPaymentAmount");
+const orderFormFields = orderForm.querySelector(".order-form-fields");
+const orderFormBottom = orderForm.querySelector(".order-form-bottom");
 const orderStatus = document.querySelector("#orderStatus");
 const orderSubmit = orderForm.querySelector('button[type="submit"]');
 let selectedBook = null;
@@ -36,7 +39,11 @@ function setOrderStatus(message, state = "") {
 function openOrderDialog(book) {
   selectedBook = book;
   orderDialogBook.textContent = book.title;
+  orderDialogTitle.textContent = "Where should we send it?";
   orderForm.reset();
+  orderPayment.hidden = true;
+  orderFormFields.hidden = false;
+  orderFormBottom.hidden = false;
   setOrderStatus("");
   orderDialog.showModal();
   orderAddress.focus();
@@ -83,8 +90,6 @@ function makeBookCard(book, index) {
 
   const order = document.createElement("button");
   order.type = "button";
-  order.disabled = !book.orderUrl;
-  order.title = book.orderUrl ? "" : "Add an order link in njz/books.js to enable this button";
   order.className = "button button-dark book-order";
   order.textContent = "Order";
   order.addEventListener("click", () => openOrderDialog(book));
@@ -138,9 +143,12 @@ orderForm.addEventListener("submit", async (event) => {
       throw new Error(`Book order request failed with status ${response.status}.`);
     }
 
-    const destination = selectedBook.orderUrl;
-    orderDialog.close();
-    window.location.assign(destination);
+    orderPaymentAmount.textContent = `${selectedBook.price} Rs.`;
+    orderDialogTitle.textContent = "Complete your payment";
+    orderFormFields.hidden = true;
+    orderFormBottom.hidden = true;
+    orderPayment.hidden = false;
+    orderPayment.querySelector("button").focus();
   } catch (error) {
     console.error("Could not send book order address.", error);
     setOrderStatus("Couldn’t send your address just now. Please try again later.", "error");
