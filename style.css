@@ -267,13 +267,13 @@ h1 span { color: #527844; }
 :root[data-theme="dark"] .wallpaper-hero-copy > p:last-child { color: var(--muted); }
 :root[data-theme="dark"] .wallpaper-card { background: #202d24; color: var(--ink); }
 :root[data-theme="dark"] .wallpaper-card-meta { color: var(--muted); }
-.book-hero { min-height: 410px; padding-block: 72px 62px; display: grid; grid-template-columns: 1fr .85fr; align-items: center; gap: 60px; }
+.book-hero { min-height: 410px; padding-block: 72px 62px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 640px); align-items: center; gap: 60px; }
 .book-hero-copy { max-width: 560px; }
 .book-hero-copy .eyebrow { margin-bottom: 15px; }
 .book-hero h1 { margin-bottom: 17px; font-size: 68px; }
 .book-hero h1 span { color: #e16b4c; }
 .book-hero-copy > p:last-child { max-width: 440px; margin: 0; color: #53635a; font-size: 16px; line-height: 1.75; }
-.book-art { min-height: 260px; position: relative; overflow: hidden; background: #f0be60; }
+.book-art { width: 100%; max-width: 640px; height: 640px; min-height: 0; justify-self: end; position: relative; overflow: hidden; background: #f0be60; }
 .book-art img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
 .books-section { padding: 70px 0 88px; background: var(--forest); color: #f4f3e9; }
 .books-heading { margin-bottom: 28px; display: flex; justify-content: space-between; align-items: end; gap: 24px; }
@@ -369,7 +369,7 @@ h1 span { color: #527844; }
   .latest-wallpaper-preview { aspect-ratio: 16 / 10; }
   .book-hero { min-height: 0; padding-block: 52px 42px; grid-template-columns: 1fr; gap: 28px; }
   .book-hero h1 { font-size: 54px; }
-  .book-art { min-height: 220px; }
+  .book-art { width: 100%; height: auto; max-width: 640px; aspect-ratio: 1; justify-self: start; }
   .books-section { padding: 54px 0 66px; }
   .books-heading { align-items: start; flex-direction: column; gap: 10px; }
   .books-heading h2 { font-size: 30px; }
@@ -381,7 +381,7 @@ h1 span { color: #527844; }
   .wallpaper-art-block:first-child { left: 12%; }
   .wallpaper-art-block:nth-child(3) { right: 8%; width: 82px; }
   .book-hero h1 { font-size: 48px; }
-  .book-art { min-height: 190px; }
+  .book-art { width: 100%; height: auto; min-height: 0; aspect-ratio: 1; }
   .book-order-form { padding: 21px; }
   .order-dialog-heading h2 { font-size: 22px; }
   .order-form-bottom { align-items: flex-start; flex-direction: column; }
