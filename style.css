@@ -273,14 +273,8 @@ h1 span { color: #527844; }
 .book-hero h1 { margin-bottom: 17px; font-size: 68px; }
 .book-hero h1 span { color: #e16b4c; }
 .book-hero-copy > p:last-child { max-width: 440px; margin: 0; color: #53635a; font-size: 16px; line-height: 1.75; }
-.book-art { min-height: 260px; position: relative; overflow: hidden; background: #f0be60; isolation: isolate; }
-.book-art::before { width: 56%; height: 130%; position: absolute; right: -8%; bottom: -58%; transform: rotate(-18deg); content: ""; background: #426e4b; }
-.book-art::after { width: 45%; height: 110%; position: absolute; left: -13%; top: -55%; transform: rotate(22deg); content: ""; background: #d5ef67; }
-.book-stack { position: absolute; z-index: 1; left: 50%; bottom: 38px; width: 210px; transform: translateX(-50%) rotate(-2deg); }
-.book-spine { height: 54px; margin-top: 8px; display: flex; align-items: center; justify-content: center; border: 7px solid rgba(23, 39, 32, .14); color: #172720; font: 700 10px/1 var(--display); letter-spacing: 1.3px; box-shadow: 7px 7px 0 rgba(23, 39, 32, .12); }
-.book-spine:first-child { width: 175px; margin-inline: auto; background: #f27c5d; }
-.book-spine:nth-child(2) { width: 210px; background: #e9eee5; }
-.book-spine:last-child { width: 190px; margin-inline: auto; background: #b9d2a1; }
+.book-art { min-height: 260px; position: relative; overflow: hidden; background: #f0be60; }
+.book-art img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
 .books-section { padding: 70px 0 88px; background: var(--forest); color: #f4f3e9; }
 .books-heading { margin-bottom: 28px; display: flex; justify-content: space-between; align-items: end; gap: 24px; }
 .books-heading .eyebrow { margin-bottom: 9px; color: #b3c0ae; }
@@ -388,7 +382,6 @@ h1 span { color: #527844; }
   .wallpaper-art-block:nth-child(3) { right: 8%; width: 82px; }
   .book-hero h1 { font-size: 48px; }
   .book-art { min-height: 190px; }
-  .book-stack { transform: translateX(-50%) scale(.86) rotate(-2deg); transform-origin: bottom center; }
   .book-order-form { padding: 21px; }
   .order-dialog-heading h2 { font-size: 22px; }
   .order-form-bottom { align-items: flex-start; flex-direction: column; }
