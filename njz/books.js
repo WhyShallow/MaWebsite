@@ -59,16 +59,19 @@ function makeBookCard(book, index) {
   if (book.cover) {
     const image = document.createElement("img");
     image.className = "book-cover-image";
-    image.src = book.cover;
     image.alt = `${book.title} book cover`;
     image.loading = "lazy";
     image.decoding = "async";
+    image.addEventListener("load", () => {
+      cover.style.aspectRatio = `${image.naturalWidth} / ${image.naturalHeight}`;
+    }, { once: true });
     image.addEventListener("error", () => {
       const placeholder = document.createElement("span");
       placeholder.className = "book-cover-title";
       placeholder.textContent = book.title;
       image.replaceWith(placeholder);
     }, { once: true });
+    image.src = book.cover;
     cover.append(image);
   }
 
