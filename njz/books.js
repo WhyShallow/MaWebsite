@@ -2,13 +2,13 @@ const books = [
   {
     title: "Guftar",
     cover: "/assets/books/guftar.png",
-    price: "Price: 500, Delivery Charges: 300",
+    price: "Price: 500 Rs., Delivery Charges: 300",
     color: "#f27c5d"
   },
   {
     title: "Al Ishq",
     cover: "/assets/books/al-ishq.png",
-    price: "Price: 1000, Delivery Charges: 300",
+    price: "Price: 1000 Rs., Delivery Charges: 300",
     color: "#d5ef67"
   }
 ];
