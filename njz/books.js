@@ -10,6 +10,12 @@ const books = [
     cover: "/assets/books/al-ishq.png",
     price: "Price: 1000 Rs., Delivery Charges: 300",
     color: "#d5ef67"
+  },
+  {
+    title: "Both",
+    cover: "/assets/books/both.png",
+    price: "Price: 1500 Rs., Delivery Charges: 500 Rs.",
+    color: "#ec1351"
   }
 ];
 const orderApiUrl = "https://whyshallow-suggestions.marhamjz23.workers.dev";
