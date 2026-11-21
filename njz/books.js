@@ -14,7 +14,7 @@ const books = [
   {
     title: "Both",
     cover: "/assets/books/both.png",
-    price: "Price: 1500 Rs., Delivery Charges: 500 Rs.",
+    price: "Price: 1500 Rs., Delivery Charges: 500",
     color: "#ec1351"
   }
 ];
